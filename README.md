@@ -43,6 +43,94 @@ Link Center handles discovery and cart building only.
 
 ---
 
+# Project Structure
+
+The Link Center follows a feature-based architecture.
+
+## Folder Structure
+```txt
+/src
+  /routes
+    AppLayout.tsx
+    database.page.tsx
+    link-assistant.page.tsx
+
+  /components
+    /layout
+      Sidebar.tsx
+      Topbar.tsx
+      CartDropdown.tsx
+    /ui
+      Button.tsx
+      Input.tsx
+      Select.tsx
+      Badge.tsx
+      Table.tsx
+      Dropdown.tsx
+
+  /features
+    /database
+      DomainsTable.tsx
+      FiltersBar.tsx
+      DomainRow.tsx
+    /cart
+      cart.store.ts
+    /saved
+      SavedTable.tsx
+
+  /lib
+    supabase.ts
+    utils.ts
+
+## Component Architecture
+
+### Shared Components (`/components`)
+
+Reusable UI elements without business logic.
+
+Examples:
+- Button
+- Input
+- Badge
+- Table
+- Dropdown
+
+Rule:  
+If a component does NOT reference backlink-specific concepts (DR, Traffic, Domain, Price), it belongs here.
+
+---
+
+### Feature Components (`/features`)
+
+Business-specific UI and logic.
+
+Examples:
+- DomainsTable
+- FiltersBar
+- Cart logic
+- Saved domains logic
+
+Rule:  
+If it references backlink data or marketplace logic, it belongs inside its feature folder.
+
+---
+
+## State Management
+
+- Cart state lives in `cart.store.ts`
+- Filters use local state (MVP)
+- No global state library required for MVP
+- Avoid unnecessary complexity
+
+---
+
+## Supabase Usage
+
+- Supabase is used only for backlink database
+- No authentication in MVP
+- No direct DB calls inside UI components
+- All database logic lives in `/lib`
+
 # Security Layer
 
 The Link Center is protected by an access token passed via query string. The token will be manually created and manually updated regularlry. So there is no individual token by shop user.
