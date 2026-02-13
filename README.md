@@ -10,7 +10,7 @@ It allows agencies to:
 - Add backlinks to a cart
 - Checkout via the main Blogtec WooCommerce shop
 
-The marketplace acts as:
+The link center acts as:
 > A product discovery and filtering tool  
 > that hands over checkout and order handling to WooCommerce.
 
@@ -20,7 +20,7 @@ The system is intentionally simple and optimized for scalability.
 
 # Architecture Overview
 
-**Marketplace:**  
+**Link Center:**  
 `linkcenter.blogtec.io` (Vite + React SPA)
 
 **Main Shop (WooCommerce):**  
@@ -28,7 +28,7 @@ The system is intentionally simple and optimized for scalability.
 
 Checkout and order management are handled exclusively in WooCommerce.
 
-Marketplace handles discovery and cart building only.
+Link Center handles discovery and cart building only.
 
 ---
 
@@ -45,13 +45,13 @@ Marketplace handles discovery and cart building only.
 
 # Security Layer
 
-The marketplace is protected by an access token passed via query string. The token will be manually created and manually updated regularlry. So there is no individual token by shop user.
+The Link Center is protected by an access token passed via query string. The token will be manually created and manually updated regularlry. So there is no individual token by shop user.
 
 Example:
 
-https://marketplace.blogtec.io/?access=591251512
+https://linkcenter.blogtec.io/?access=591251512
 
-The access expires after 7 days.
+After a valid token is used, the user receives a 7-day access session (cookie).
 
 This provides controlled access without authentication complexity.
 
@@ -70,7 +70,7 @@ Vite SPA using React Router with nested layout.
 Menu:
 - Back to Blogtec App
 - Database
-- Link Assistant (Phase 2)
+- Link Assistant (Phase 3)
 
 Active sidebar fill color:
 `#FFE2E9`
@@ -93,7 +93,7 @@ Right:
 - Clean SaaS interface
 - Data-dense
 - Table-first layout
-- No flashy marketplace visuals
+- No flashy visuals
 - Built for agencies
 
 ---
@@ -186,7 +186,7 @@ Checkout is handled entirely in WooCommerce.
 
 ## Flow
 
-1. User selects backlinks in marketplace.
+1. User selects backlinks in link center.
 2. Clicks Checkout.
 3. Redirect to custom Woo endpoint:
    - Endpoint builds Woo cart items.
@@ -206,10 +206,6 @@ Checkout is handled entirely in WooCommerce.
 # Orders
 
 Orders live in WooCommerce.
-
-Marketplace “Orders” menu item links to:
-
-https://blogtec.io/my-account/orders
 
 Woo remains the single source of truth for:
 
@@ -243,7 +239,7 @@ Not implemented in MVP.
 
 # Development Phases
 
-## Phase 1 – Core Marketplace
+## Phase 1 – Core Link Center
 
 - UI shell
 - Database table
@@ -251,7 +247,7 @@ Not implemented in MVP.
 - Cart dropdown
 - Saved domains and backlink deals
 
-## Phase 2 – Checkout and Login Functionality
+## Phase 2 – Access Control & Checkout Integration
 - Signed access token security
 - Woo checkout redirect
 
@@ -263,7 +259,7 @@ Not implemented in MVP.
 
 # Architectural Principles
 
-1. Marketplace is product discovery only.
+1. Link Center is product discovery only.
 2. WooCommerce is the commerce engine.
 3. Keep complexity low.
 4. Build for scalability (15,000+ domains).
