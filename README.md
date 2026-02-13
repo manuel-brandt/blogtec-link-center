@@ -340,7 +340,7 @@ Not implemented in MVP.
 - Saved domains and backlink deals
 
 ## Phase 2 – Access Control & Checkout Integration
-- Signed access token security
+- Access token security
 - Woo checkout redirect
 
 ## Phase 3 – LinkFinder
