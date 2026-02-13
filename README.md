@@ -131,6 +131,8 @@ If it references backlink data or marketplace logic, it belongs inside its featu
 - No direct DB calls inside UI components
 - All database logic lives in `/lib`
 
+---
+
 # Security Layer
 
 The Link Center is protected by an access token passed via query string. The token will be manually created and manually updated regularlry. So there is no individual token by shop user.
