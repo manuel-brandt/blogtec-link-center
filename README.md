@@ -82,6 +82,8 @@ The Link Center follows a feature-based architecture.
     supabase.ts
     utils.ts
 
+```
+
 ## Component Architecture
 
 ### Shared Components (`/components`)
