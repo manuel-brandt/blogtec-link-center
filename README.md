@@ -10,7 +10,7 @@ It allows agencies to:
 - Add backlinks to a cart
 - Checkout via the main Blogtec WooCommerce shop
 
-The link center acts as:
+The Link Center acts as:
 > A product discovery and filtering tool  
 > that hands over checkout and order handling to WooCommerce.
 
@@ -278,7 +278,7 @@ Checkout is handled entirely in WooCommerce.
 
 ## Flow
 
-1. User selects backlinks in link center.
+1. User selects backlinks in Link Center.
 2. Clicks Checkout.
 3. Redirect to custom Woo endpoint:
    - Endpoint builds Woo cart items.
@@ -343,7 +343,7 @@ Not implemented in MVP.
 - Access token security
 - Woo checkout redirect
 
-## Phase 3 – LinkFinder
+## Phase 3 – Link Finder
 - Suggest best link opportunities based on a questionnaire
 
 
