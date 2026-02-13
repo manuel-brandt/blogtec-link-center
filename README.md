@@ -23,10 +23,10 @@ The system is intentionally simple and optimized for scalability.
 # Architecture Overview
 
 **Marketplace:**  
-`marketplace.blogtec.io` (Vite + React SPA)
+`linkcenter.blogtec.io` (Vite + React SPA)
 
 **Main Shop (WooCommerce):**  
-`blogtec.io`
+`app.blogtec.io`
 
 Checkout and order management are handled exclusively in WooCommerce.
 
