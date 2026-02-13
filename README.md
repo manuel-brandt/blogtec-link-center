@@ -5,14 +5,12 @@
 The Blogtec Link Center is a lightweight B2B backlink database and ordering tool.
 
 It allows agencies to:
-
 - Browse a curated backlink database
 - Filter by SEO metrics (DR, Traffic, Niche, Type)
 - Add backlinks to a cart
 - Checkout via the main Blogtec WooCommerce shop
 
 The marketplace acts as:
-
 > A product discovery and filtering tool  
 > that hands over checkout and order handling to WooCommerce.
 
@@ -35,7 +33,6 @@ Marketplace handles discovery and cart building only.
 ---
 
 # Tech Stack
-
 - Vite + React (SPA)
 - React Router (nested layouts)
 - TypeScript
@@ -48,36 +45,21 @@ Marketplace handles discovery and cart building only.
 
 # Security Layer
 
-The marketplace is protected by a signed access token passed via query string.
+The marketplace is protected by an access token passed via query string. The token will be manually created and manually updated regularlry. So there is no individual token by shop user.
 
 Example:
 
-https://marketplace.blogtec.io/?access=SIGNED_TOKEN
+https://marketplace.blogtec.io/?access=591251512
 
-yaml
-Copy code
+The access expires after 7 days.
 
-## Token Rules
-
-- Token must be HMAC signed.
-- Token must include expiration timestamp.
-- Token validation must happen server-side (NOT client-only).
-- If valid → set secure cookie (e.g. 7 days).
-- If invalid → show “Access Required” screen.
-
-Do NOT use plain-text passwords in query strings.
-
-This provides controlled access without full authentication complexity.
+This provides controlled access without authentication complexity.
 
 ---
 
 # Routing Strategy
 
 Vite SPA using React Router with nested layout.
-
-## Root Behavior
-
-`/` → redirects to `/database`
 
 ---
 
@@ -86,10 +68,9 @@ Vite SPA using React Router with nested layout.
 ## Sidebar
 
 Menu:
-
+- Back to Blogtec App
 - Database
-- Orders (links to Woo My Account)
-- LinkFinder (Phase 2)
+- Link Assistant (Phase 2)
 
 Active sidebar fill color:
 `#FFE2E9`
@@ -97,23 +78,18 @@ Active sidebar fill color:
 ---
 
 ## Topbar
-
 Left:
 - Page title
 
 Right:
 - Notification icon
 - Cart icon (with counter badge)
-- User dropdown (future use)
-
-Cart opens as a right-side dropdown.
 
 ---
 
 # UI System
 
 ## Design Philosophy
-
 - Clean SaaS interface
 - Data-dense
 - Table-first layout
@@ -124,25 +100,23 @@ Cart opens as a right-side dropdown.
 
 ## Typography
 
-Font: **Lato**
+Font: Lato
 
 Weights:
-
 - 500 – Table rows, metadata
 - 600 – Table headers, sidebar items, buttons
 - 700 – Page titles, prices, DR badges
 
 Sizes:
-
 - Table text: 14px
 - Table header: 14px
 - Page title: 18px
 
 Use tabular numbers for:
-
 - DR
 - Traffic
 - Price
+- Referring Domains
 
 ---
 
@@ -166,7 +140,6 @@ White
 ---
 
 ## DR Badge Logic
-
 - DR 60+ → Green
 - DR 30–59 → Yellow
 - DR 0–29 → Grey
@@ -182,12 +155,12 @@ Badges should be subtle and professional.
 Main screen of the application.
 
 Features:
-
-- Search input
+- Search by domain name
+- 3 views, General, Deals, and Saved
 - Filter bar (DR, Traffic, Niche, Type)
 - Sortable columns (DR, Traffic, Price)
 - Add to cart button
-- Sticky table header
+- Save domain button
 - Internal scroll container
 
 Filters initially handled client-side.
@@ -197,19 +170,13 @@ Filters initially handled client-side.
 ## Cart (Topbar Dropdown)
 
 Cart contains:
-
 - Domain
-- DR
-- Traffic
 - Price
 
 Features:
-
 - Remove item
 - Display total
 - Checkout button
-
-No dedicated cart page for MVP.
 
 ---
 
@@ -244,17 +211,12 @@ Marketplace “Orders” menu item links to:
 
 https://blogtec.io/my-account/orders
 
-markdown
-Copy code
-
 Woo remains the single source of truth for:
 
 - Payments
 - VAT
 - Refunds
 - Accounting
-
-Future phase may sync orders into Supabase for internal display.
 
 ---
 
@@ -287,22 +249,15 @@ Not implemented in MVP.
 - Database table
 - Filters
 - Cart dropdown
+- Saved domains and backlink deals
+
+## Phase 2 – Checkout and Login Functionality
 - Signed access token security
 - Woo checkout redirect
 
-## Phase 2 – LinkFinder
+## Phase 3 – LinkFinder
+- Suggest best link opportunities based on a questionnaire
 
-- Advanced filtering
-- Value scoring
-- Best-match suggestions
-- Saved filters
-
-## Phase 3 – Intelligence Layer
-
-- Traffic history tracking
-- Order syncing
-- Agency-specific pricing
-- Credit system
 
 ---
 
@@ -310,8 +265,6 @@ Not implemented in MVP.
 
 1. Marketplace is product discovery only.
 2. WooCommerce is the commerce engine.
-3. No VAT logic inside React app.
-4. Keep complexity low.
-5. Build for scalability (15,000+ domains).
-6. Avoid overengineering authentication in MVP.
-7. Separate UI, business logic, and Woo integration clearly.
+3. Keep complexity low.
+4. Build for scalability (15,000+ domains).
+5. Separate UI, business logic, and Woo integration clearly.
